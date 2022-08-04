@@ -1,0 +1,19 @@
+# Do You Want to Build a Snowman?
+
+print("""      *     *                    
+                      *         
+*         *                 *   
+     *           *     *         
+           HHHHHHH        *      
+ *         HHHHHHH               
+     *   HHHHHHHHHHH    *     *  
+         *   @ @   *             
+       *     <     *            
+  *       *       *         *    
+         SSS * * S               
+       * SSSSSSSS *            
+      *      O   SS  *         
+     *       O    S   *        
+     *       O        *        
+      *              *          
+          *   *   *             """)
