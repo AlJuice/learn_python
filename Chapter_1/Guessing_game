@@ -117,7 +117,7 @@ def is_valid(num):
             print("Oh no, your digit is less than 1!")             # Why there's two sentences in terminal?
             print("Please, choose another one")
             return False
-        elif int(num) > 100:
+        elif int(num) > 101:
             print("Oh no, your digit is bigger than 100!")         # Why there's two sentences in terminal?
             print("Please, choose another one")
             return False
