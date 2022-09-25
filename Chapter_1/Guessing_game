@@ -1,0 +1,145 @@
+
+import random
+import time
+
+
+# game description
+def guessing_game(random_num, again, counter):
+
+    while again:
+
+        if counter >= 7:
+            agreed_user = input(random.choice(do_you_wanna_again))
+            if agreed_user.upper().strip() in ["NO", "N"]:
+                time.sleep(1.2)
+                print("Okay, come back anytime to play with me")
+                print("Bye")
+                exit()
+            elif agreed_user.upper().strip() in ["YES", "Y", "YE"]:
+                time.sleep(1.0)
+                print("Yep, then continue our game ^.^")
+                counter = 0
+                continue
+
+        num = input("Choose your number:")
+        is_valid(num)
+        if is_valid(num) is True:
+
+            if int(num) > int(random_num):
+                print(random.choice(phrases_too_much))
+                time.sleep(1.0)
+                counter += 1
+                continue
+
+            elif int(num) < int(random_num):
+                print(random.choice(phrases_too_little))
+                time.sleep(1.0)
+                counter += 1
+                continue
+
+            else:
+                print(random.choice(phrases_guessed))          # win
+                time.sleep(1.0)
+                print("Hey, do you wanna start a new game?")
+                answer_from_user = input("Type YES or NO")
+                if answer_from_user.upper().strip() in ["NO", "N"]:
+                    time.sleep(1.2)
+                    print("Okay, come back anytime to play with me")
+                    print("Bye")
+                    exit()
+                elif answer_from_user.upper().strip() in ["YES", "Y", "YE"]:
+                    time.sleep(1.0)
+                    print("Yay, let's get it started again ;)")
+                    game_start()
+
+
+# rules description
+def game_rules():
+    print("Actually, my rules are pretty simple!")
+    time.sleep(0.8)
+    print("I'll generate a random number in the range from 1 to 100")
+    time.sleep(0.5)
+    print("So that means I won't be generating a number less than 1 or greater than 100")
+    time.sleep(0.8)
+    print("And your goal is to guess the number")
+    time.sleep(1)
+    print("Okay, you're ready to play my game ;)")
+    game_start()
+
+
+# description of questioning to user_rules
+def question_to_user_rules():
+    time.sleep(0.6)
+    answer_user = input("Type YES or NO")
+    if answer_user.upper().strip() in ["YES", "Y", "YE"]:
+        game_rules()
+    else:
+        print("Okay...")
+        time.sleep(0.8)
+        game_start()
+
+
+# description the beginning of game
+def game_beginning():
+    print("Hi, I'm Juice. A new guessing game, and you?")
+    time.sleep(1.2)
+    name = input('Tell me your name, please').strip()
+    time.sleep(0.8)
+    print(f"Okay, {name} Let's play a guessing game with me")
+    time.sleep(0.8)
+    print("Before we start...")
+    time.sleep(0.9)
+
+    print("Do you wanna hear the rules of the game?")
+    question_to_user_rules()
+
+
+# description of valid num
+def is_valid(num):
+    if num.isdigit() is False:
+        print("Oh, you've typed not a digit")
+        time.sleep(0.8)
+        print("I can't play with you T.T")
+        time.sleep(0.8)
+        print("Do you really wanna play with me?")
+
+        answer_user = input("Type YES or NO")
+        if answer_user.upper().strip() in ["YES", "Y"]:
+            game_start()
+        elif answer_user.upper().strip() in ["NO", "N"]:
+            time.sleep(0.8)
+            print("Okay...")
+            time.sleep(0.8)
+            print("Bye T.T")
+            exit()
+
+    elif num.isdigit() is True:
+        if int(num) < 1:
+            print("Oh no, your digit is less than 1!")             # Why there's two sentences in terminal?
+            print("Please, choose another one")
+            return False
+
+        elif int(num) > 100:
+            print("Oh no, your digit is bigger than 100!")         # Why there's two sentences in terminal?
+            print("Please, choose another one")
+            return False
+
+        elif 1 <= int(num) <= 100:
+            return True
+
+
+# description of game starting
+def game_start():
+    random_num = random.randint(1, 100)
+    again = True
+    counter = 0
+    guessing_game(random_num, again, counter)  # start the game
+
+
+# Lists
+phrases_too_much = ["Wow, it's bigger!", "Too pity, your number's bigger than mine"]
+phrases_too_little = ["Wow, it's less!", "Too pity, your number's less than mine"]
+phrases_guessed = ["My congratulations! You've guessed it right", "You're win!", "Bingo!"]
+do_you_wanna_again = ["Do you wanna try it again? YES or NO", "Wanna guessing one more? YES or NO"]
+
+game_beginning()
