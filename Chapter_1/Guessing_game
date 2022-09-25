@@ -1,4 +1,3 @@
-
 import random
 import time
 
@@ -21,7 +20,7 @@ def guessing_game(random_num, again, counter):
                 counter = 0
                 continue
 
-        num = input("Choose your number:")
+        num = input("Choose your number:").strip()
         is_valid(num)
         if is_valid(num) is True:
 
@@ -70,7 +69,7 @@ def game_rules():
 # description of questioning to user_rules
 def question_to_user_rules():
     time.sleep(0.6)
-    answer_user = input("Type YES or NO")
+    answer_user = input("Type YES or NO").strip()
     if answer_user.upper().strip() in ["YES", "Y", "YE"]:
         game_rules()
     else:
@@ -118,7 +117,6 @@ def is_valid(num):
             print("Oh no, your digit is less than 1!")             # Why there's two sentences in terminal?
             print("Please, choose another one")
             return False
-
         elif int(num) > 100:
             print("Oh no, your digit is bigger than 100!")         # Why there's two sentences in terminal?
             print("Please, choose another one")
