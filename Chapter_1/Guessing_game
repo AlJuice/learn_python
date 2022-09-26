@@ -14,18 +14,9 @@ def ending_game():
 def guessing_game(random_num, again, counter):
     while again:
 
-        if counter >= 7:
-            agreed_user = input(random.choice(do_you_wanna_again))
-            if agreed_user.upper().strip() in ["NO", "N"]:
-                print(f"The correct answer was {random_num}")
-                ending_game()
-            elif agreed_user.upper().strip() in ["YES", "Y", "YE"]:
-                time.sleep(1.0)
-                print("Yep, then continue our game ^.^")
-                continue
-            else:
-                print("Sorry didn't get you")                                 # ??? It skips
-
+        if counter >= 3:
+            continue_play()
+            
         num = input("Choose your number:").strip()
 
         if is_valid(num):
@@ -33,18 +24,36 @@ def guessing_game(random_num, again, counter):
                 print(random.choice(phrases_too_much))
                 time.sleep(0.7)
                 counter += 1
-                continue
+
             elif int(num) < int(random_num):
                 print(random.choice(phrases_too_little))
                 time.sleep(0.7)
                 counter += 1
-                continue
+
             elif int(num) == int(random_num):
                 print(random.choice(phrases_guessed))  # win
 
                 time.sleep(1.0)
                 print("Hey, do you wanna start a new game?")
                 questioning_user_start_game()
+
+
+# description of continuing game
+def continue_play():
+    agreed_user = input(random.choice(do_you_wanna_again))
+    if agreed_user.upper().strip() in ["NO", "N"]:
+        time.sleep(1.0)
+        print("Okay...")
+        time.sleep(1.0)
+        print(f"The correct answer was {random_num}")
+        ending_game()
+    elif agreed_user.upper().strip() in ["YES", "Y", "YE"]:
+        time.sleep(1.0)
+        print("Yep, then continue our game ^.^")
+        return True
+    else:
+        print("Sorry didn't get you")
+        continue_play()
 
 
 # rules description
@@ -83,6 +92,9 @@ def questioning_user_start_game():
         time.sleep(0.8)
         print("Okay...")
         ending_game()
+    else:
+        print("Sorry, didn't get you")
+        questioning_user_start_game()
 
 
 # description the beginning of game
@@ -110,9 +122,8 @@ def is_valid(num):
         print("Do you really wanna play with me?")
         questioning_user_start_game()
 
-
     # def is_valid(s: str) -> bool:
-    #     return s.isdigit() and 1 <= int(s) <= 100
+    #     if num.isdigit() and 1 <= int(num) <= 100:
 
     elif num.isdigit():
         if int(num) < 1:
@@ -129,7 +140,8 @@ def is_valid(num):
 
 # description of game starting
 def game_start():
-    random_num = random.randint(1, 100)                     #improve the range(l,n) where user settles the borders by himself
+    global random_num
+    random_num = random.randint(1, 100)  
     again = True
     counter = 0
     guessing_game(random_num, again, counter)  # start the game
@@ -142,5 +154,3 @@ phrases_guessed = ["My congratulations! You've guessed it right", "You're win!",
 do_you_wanna_again = ["Do you wanna try it again? YES or NO", "Wanna guessing one more? YES or NO"]
 
 game_beginning()
-
-# If you type a digit in any questions instead of YES or NO, it keeps continue the game
