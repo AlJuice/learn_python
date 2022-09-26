@@ -1,0 +1,78 @@
+import random
+from time import sleep
+
+# Beginning of game
+def beginning_game():
+    print("Hello World!")
+    sleep(1.0)
+    print("I'm a mysterious ball, and I know the answer to any of your questions!")
+    sleep(1.0)
+    global name
+    name = input("Tell me what's ur name?").strip()
+    sleep(1.0)
+    print(f"Okay, {name}.")
+
+
+def game():
+    beginning_game()
+    print("Is there any question you'd like to know about your future?")
+
+    is_valid()
+
+    while True:
+        question = input(random.choice(d_questions)).strip()
+        sleep(2.5)
+        thinking()
+        sleep(2.5)
+        print("My answer is...")
+        sleep(1.5)
+        print(random.choice(d_answers))
+        sleep(1.5)
+
+        print(f"Anything else, {name}?")
+        is_valid()
+
+
+# description of valid_answers
+def is_valid() -> bool:
+    answer = input("Type YES or NO")
+    if answer.strip().isalpha() and answer.upper().strip() in ["YES", "YE", "Y"]:
+        sleep(1.0)
+        print("Okay.")
+        return True
+    elif answer.strip().isalpha() and answer.upper().strip() in ["NO", "N"]:
+        sleep(1.0)
+        print("Okay...")
+        sleep(1.0)
+        print("Come back when you have more questions!")
+        sleep(1.0)
+        print("Bye")
+        exit()
+    else:
+        print("Sorry, didn't get you")
+        is_valid()
+
+
+# description of thinking
+def thinking():
+    thoughts_count = random.randint(1, 5)
+    thoughts = ["Hm...Let me think", "Thinking...", "That's interesting. I'm thinking...", "Wow, give me seconds...",
+                "Tough problem, but I can handle it...", "Okay, I need a couple of seconds to think...", "Okaay...",
+                "I'm almost know the answer! Wait..", "Please, wait"]
+    for _ in range(thoughts_count):
+        print(random.choice(thoughts))
+        sleep(1.0)
+        print('...')
+
+
+# Dictionary of phrases
+d_answers = ["Undoubtedly", "Predestined", "No doubt", "For sure!", "Definitely yes", "Yes", "Likely yes",
+             "You can be sure in it", "I think - yes", "Most likely", "Nice prospects", "The future is bright",
+             "The sign says - yes", "Yes", "It's still unclear, try it again", "Ask later", "Meow", "Murr",
+             "Better not tell", "Can't predict right now", "Concentrate and ask me again", "Purr",
+             "Don't even think about it", "My answer - no", "According to my information - no", "No",
+             "Prospects aren't quite good", "Highly doubtful"]
+d_questions = ["Type ur question here", "Okay, now you can tell me your question", "So, tell me what's bothering you?",
+               "So, what do u wanna know?", "Hurry, write down ur question!"]
+
+game()
