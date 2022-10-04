@@ -1,1 +1,60 @@
+# Task №1.
 
+c = int(input("Введите длину стороны квадрата:"))
+
+P_square = c * 4
+S_square = c**2
+
+print("\nВывод:")
+
+# вырисовка при с > 0
+for i in range(c):
+  print(c * "*")
+
+print(f"\nПериметр: {P_square}")
+print(f"Площадь: {S_square}\n")
+
+a = int(input("Введите длину прямоугольника:"))
+b = int(input("Введите ширину прямоугольника:"))
+
+P_rectangle = (a + b) * 2
+S_rectangle  = a * b
+
+print("\nВывод:")
+
+# вырисовка при с > 0
+for i in range(1, a + 1):
+  print(b * "*")
+
+print(f"\nПериметр: {P_rectangle}")
+print(f"Площадь: {S_rectangle}")
+
+# Task №3. 
+
+symbol = input("\nВведите какой-нибудь символ")
+length = P_square + S_rectangle
+print(symbol * length)
+
+# Task №2.
+
+# Для этого пользователю предлагается ввести следующие данные:
+# Заработную плату в месяц.
+# Какой процент(%) от зп уходит на ипотеку.
+# Какой процент(%) от зп уходит “на жизнь”.
+
+salary = int(input("\nВведите заработную плату в месяц:"))
+percentage_mortgage = int(
+  input("Введите, какой процент(%) уходит на ипотеку:"))
+percentage_life = int(input("Введите, какой процент(%) уходит на жизнь:"))
+
+mortgage_spent = (salary * percentage_mortgage) // 100
+life_spent = (salary * percentage_life) // 100
+
+savings = (salary - (mortgage_spent + life_spent)) * 12
+spendings = mortgage_spent * 12
+
+print("\nВывод:")
+print(f"На ипотеку было потрачено: {spendings}")
+print(f"Было накоплено: {savings}")
+
+print("\nЗадание было выполнено: студенткой Нетологии - Матусевич Алиной")
