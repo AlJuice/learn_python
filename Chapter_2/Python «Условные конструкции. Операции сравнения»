@@ -1,0 +1,143 @@
+# Задача №1. Ипотечный калькулятор
+
+clients_region = ["Дальний Восток", "Краснодарский край", "Москва", "Санкт-Петербург", "Красноярский край", "Томская область"]
+base_rate = 5
+
+def calc(base_rate):
+  client_region = input("Введите свой регион").strip()
+  kids = int(input("Введите количество ваших детей"))
+  
+  answer_salary_profect = input("На вас оформлен зарплатный проект в нашем банке? Да\Нет").lower().strip()
+  if answer_salary_profect in ["да", "д"]:
+    salary_profect = True
+  else:
+    salary_profect = False
+
+  answer_insurance = input("Будете оформлять страхование в нашем банке? Да\Нет").lower().strip()
+  if answer_insurance in ["да", "д"]:
+    insurance = True
+  else:
+    insurance = False
+  
+  if client_region == clients_region[0]:
+    base_rate = 2
+    return base_rate
+    
+  if kids > 3:
+    base_rate -= 1
+  if salary_profect:
+    base_rate -= 0.5
+  if insurance:
+    base_rate -= 1.5
+  return base_rate
+  
+print(calc(base_rate))
+
+print("*********************************")
+# Задание №2. Приложение для определения знака зодиака по дате рождения.
+
+month = input("Введите ваш месяц рождения").lower().strip()
+date = int(input("Введите ваше число рождения"))
+
+def zodiac() -> str:
+
+  if month in ["январь", "01", "1"]: # 31
+    if date in range(1, 21): 
+      return "Козерог" # до 20 января
+    elif date in range(21, 32):
+     return "Водолей" # от 21 января
+    else:
+      return "Ошибка! Такого дня не существует!"
+      
+  elif month in ["февраль", "02", "2"]: # 28\29
+    if date in range(1, 19):
+      return "Водолей"  # до 18 февраля
+    elif date in range(19, 30):
+      return "Рыбы" # от 19 февраля
+    else:
+      return "Ошибка! Такого дня не существует!"
+      
+  elif month in ["март", "03", "3"]: # 31
+    if date in range(1, 21):
+      return "Рыбы" # до 20 марта
+    elif date in range(21, 32):
+      return "Овен" # от 21 марта 
+    else:
+      return "Ошибка! Такого дня не существует!"  
+      
+  elif month in ["апрель", "04", "4"]: # 30
+    if date in range(1, 21):
+      return "Овен" # до 20 апреля
+    elif date in range(21, 31):
+      return "Телец" # от 21 апреля
+    else:
+      return "Ошибка! Такого дня не существует!"
+
+  elif month in ["май", "05", "5"]: # 31
+    if date in range(1, 22): 
+      return "Телец" # до 21 мая
+    elif date in range(22, 32):
+      return "Близнецы" # от 22 мая
+    else:
+      return "Ошибка! Такого дня не существует!"
+
+  elif month in ["июнь", "06", "6"]: # 30
+    if date in range(1, 22): 
+      return "Близнецы" # до 21 июня
+    elif date in range(22, 31):
+      return "Рак" # от 22 июня
+    else:
+      return "Ошибка! Такого дня не существует!"
+
+  elif month in ["июль", "07", "7"]: # 31
+    if date in range(1, 23):
+      return "Рак" # до 22 июля
+    elif date in range(23, 32):
+      return "Лев" # от 23 июля
+    else:
+      return "Ошибка! Такого дня не существует!"
+      
+  elif month in ["август", "08", "8"]: # 31
+    if date in range(1, 24):
+      return "Лев" # до 23 августа
+    elif date in range(24, 32):
+      return "Дева" # от 24 августа
+    else:
+      return "Ошибка! Такого дня не существует!" 
+
+  elif month in ["сентябрь", "09", "9"]: # 30
+    if date in range(1, 23):
+      return "Дева" # до 22 сентября
+    elif date in range(23, 31):
+      return "Весы" # от 23 сентября
+    else:
+      return "Ошибка! Такого дня не существует!" 
+
+  elif month in ["октябрь", "10"]: # 31
+    if date in range(1, 24): 
+      return "Весы" # до 23 октября
+    elif date in range(24, 32):
+      return "Скорпион" # от 24 октября
+    else:
+      return "Ошибка! Такого дня не существует!"
+
+  elif month in ["ноябрь", "11"]: # 30
+    if date in range(1, 23):
+      return "Скорпион" # до 22 ноября
+    elif date in range(23, 31):
+      return "Стрелец" # от 23 ноября
+    else:
+      return "Ошибка! Такого дня не существует!"
+
+  elif month in ["декабрь", "12"]: # 31
+    if date in range(1, 22): 
+      return "Стрелец" # до 21 декабря
+    elif date in range(22, 32):
+      return "Козерог" # от 22 декабря
+    else:
+      return "Ошибка! Такого дня не существует!"      
+
+print("Вывод:")
+print(zodiac())
+
+print("\nЗадание было выполнено: студенткой Нетологии - Матусевич Алиной")
